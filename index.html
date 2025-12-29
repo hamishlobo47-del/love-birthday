@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>HBD love</title>
+<title>From My Heart ❤️</title>
 
 <style>
 body {
@@ -10,7 +10,8 @@ body {
     padding: 0;
     background: #000;
     font-family: "Comic Sans MS", cursive;
-    color: #ff99aa;
+    color: #ffb6c1;
+    overflow-x: hidden;
 }
 
 #wrap {
@@ -20,26 +21,21 @@ body {
     position: relative;
 }
 
+/* TEXT */
 #text {
     position: absolute;
     top: 80px;
     left: 60px;
-    width: 420px;
+    width: 520px;
 }
 
 .say {
     font-size: 22px;
     line-height: 36px;
+    margin-bottom: 14px;
 }
 
-#clock-box {
-    position: absolute;
-    top: 420px;
-    left: 60px;
-    font-size: 18px;
-    color: #fff;
-}
-
+/* SLIDESHOW */
 #slideshow {
     position: absolute;
     top: 80px;
@@ -48,7 +44,7 @@ body {
     height: 360px;
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 0 25px rgba(255,0,0,0.6);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
     background: #111;
 }
 
@@ -57,6 +53,27 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* FLOATING HEARTS */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    color: #ff4d6d;
+    animation: floatUp 6s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.6);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
@@ -64,52 +81,49 @@ body {
 
 <div id="wrap">
 
+<!-- MUSIC -->
 <audio autoplay loop>
     <source src="./aud.mp3" type="audio/mp3">
 </audio>
 
+<!-- APOLOGY + LOVE TEXT -->
 <div id="text">
-    <div class="say">Hey you 💞</div>
-    <div class="say">Happy Birthday 🎈</div>
-    <div class="say">May God bless you 🍀</div>
-    <div class="say">And give you endless happiness 💕</div>
-    <div class="say">You are really special ❤️</div>
-    <div class="say">Forever grateful for you 😘</div>
+    <div class="say">
+        I want to say this from my heart…
+    </div>
+
+    <div class="say">
+        I’m really sorry for all the mistakes I made,<br>
+        for the times I hurt you knowingly or unknowingly.
+    </div>
+
+    <div class="say">
+        You never deserved pain from me.<br>
+        You deserved care, patience, and understanding.
+    </div>
+
+    <div class="say">
+        I promise to learn from my mistakes,<br>
+        to take care of you very well,<br>
+        to respect your feelings,<br>
+        and to always stand by you.
+    </div>
+
+    <div class="say">
+        I love you ❤️<br>
+        And I truly mean it.
+    </div>
 </div>
 
-<div id="clock-box">
-    <span id="clock"></span>
-</div>
-
+<!-- SLIDESHOW -->
 <div id="slideshow">
     <img id="slideImage" src="./images/img1.jpeg">
 </div>
 
 </div>
 
+<!-- SLIDESHOW SCRIPT -->
 <script>
-/* TIMER */
-function timeElapse(date){
-    let now = new Date();
-    let seconds = Math.floor((now - date) / 1000);
-    let days = Math.floor(seconds / (3600 * 24));
-    seconds %= 3600 * 24;
-    let hours = Math.floor(seconds / 3600);
-    seconds %= 3600;
-    let minutes = Math.floor(seconds / 60);
-    seconds %= 60;
-
-    document.getElementById("clock").innerHTML =
-        days + " days " +
-        hours + " hours " +
-        minutes + " minutes " +
-        seconds + " seconds";
-}
-
-let together = new Date(2022, 0, 1); // CHANGE DATE HERE
-setInterval(() => timeElapse(together), 1000);
-
-/* SLIDESHOW */
 let images = [
     "./images/img1.jpeg",
     "./images/img2.jpeg",
@@ -123,44 +137,22 @@ setInterval(() => {
     document.getElementById("slideImage").src = images[index];
 }, 3000);
 </script>
-<!-- Floating Hearts -->
-<style>
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  color: #ff4d6d;
-  animation: floatUp 6s linear forwards;
-  pointer-events: none;
-}
 
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
-  }
-}
-</style>
-
+<!-- FLOATING HEARTS SCRIPT -->
 <script>
 setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (16 + Math.random() * 20) + "px";
-  document.body.appendChild(heart);
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
 }, 500);
 </script>
 
 </body>
 </html>
-
