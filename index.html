@@ -1,89 +1,126 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>HBD love</title>
 
-<link rel="stylesheet" href="file/default.css">
-<script src="file/jquery.min.js"></script>
-<script src="file/jscex.min.js"></script>
-<script src="file/jscex-parser.js"></script>
-<script src="file/jscex-jit.js"></script>
-<script src="file/jscex-builderbase.min.js"></script>
-<script src="file/jscex-async.min.js"></script>
-<script src="file/jscex-async-powerpack.min.js"></script>
-<script src="file/function.js"></script>
-<script src="file/love.js"></script>
-
 <style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: "Comic Sans MS", cursive;
+    color: #ff99aa;
+}
+
+#wrap {
+    width: 1100px;
+    height: 680px;
+    margin: auto;
+    position: relative;
+}
+
+#text {
+    position: absolute;
+    top: 80px;
+    left: 60px;
+    width: 420px;
+}
+
+.say {
+    font-size: 22px;
+    line-height: 36px;
+}
+
+#clock-box {
+    position: absolute;
+    top: 420px;
+    left: 60px;
+    font-size: 18px;
+    color: #fff;
+}
+
 #slideshow {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 80px;
+    right: 60px;
     width: 260px;
     height: 360px;
-    border-radius: 15px;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+    box-shadow: 0 0 25px rgba(255,0,0,0.6);
+    background: #111;
 }
-.slide {
-    position: absolute;
+
+#slideshow img {
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 1.5s;
-}
-.slide.active {
-    opacity: 1;
+    object-fit: cover;
 }
 </style>
 </head>
 
 <body>
-<div id="main">
+
 <div id="wrap">
 
-<audio autoplay id="myAudio">
-    <source src="aud.mp3" type="audio/mp3">
+<audio autoplay loop>
+    <source src="./aud.mp3" type="audio/mp3">
 </audio>
 
 <div id="text">
-<div id="code">
-<span class="say">Hey you 💞</span><br>
-<span class="say">Happy Birthday 🎈</span><br>
-<span class="say">May God bless you 🍀</span><br>
-<span class="say">And give you endless happiness 💕</span><br>
-<span class="say">You are really special ❤️</span><br>
-<span class="say">Forever grateful for you 😘</span><br>
-</div>
+    <div class="say">Hey you 💞</div>
+    <div class="say">Happy Birthday 🎈</div>
+    <div class="say">May God bless you 🍀</div>
+    <div class="say">And give you endless happiness 💕</div>
+    <div class="say">You are really special ❤️</div>
+    <div class="say">Forever grateful for you 😘</div>
 </div>
 
 <div id="clock-box">
-<span id="clock"></span>
+    <span id="clock"></span>
 </div>
 
-<!-- Slideshow -->
 <div id="slideshow">
-<img src="images/img1.jpg" class="slide active">
-<img src="images/img2.jpg" class="slide">
-<img src="images/img3.jpg" class="slide">
-<img src="images/img4.jpg" class="slide">
+    <img id="slideImage" src="./images/img1.jpeg">
 </div>
 
-<canvas id="canvas" width="1100" height="680"></canvas>
-
-</div>
 </div>
 
-<!-- Slideshow JS -->
 <script>
-let slides = document.querySelectorAll(".slide");
-let i = 0;
+/* TIMER */
+function timeElapse(date){
+    let now = new Date();
+    let seconds = Math.floor((now - date) / 1000);
+    let days = Math.floor(seconds / (3600 * 24));
+    seconds %= 3600 * 24;
+    let hours = Math.floor(seconds / 3600);
+    seconds %= 3600;
+    let minutes = Math.floor(seconds / 60);
+    seconds %= 60;
+
+    document.getElementById("clock").innerHTML =
+        days + " days " +
+        hours + " hours " +
+        minutes + " minutes " +
+        seconds + " seconds";
+}
+
+let together = new Date(2022, 0, 1); // CHANGE DATE HERE
+setInterval(() => timeElapse(together), 1000);
+
+/* SLIDESHOW */
+let images = [
+    "./images/img1.jpeg",
+    "./images/img2.jpeg",
+    "./images/img3.jpeg",
+    "./images/img4.jpeg"
+];
+
+let index = 0;
 setInterval(() => {
-    slides[i].classList.remove("active");
-    i = (i + 1) % slides.length;
-    slides[i].classList.add("active");
+    index = (index + 1) % images.length;
+    document.getElementById("slideImage").src = images[index];
 }, 3000);
 </script>
 
